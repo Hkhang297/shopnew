@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/themify-icons.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/giohang.css">
+</head>
+
+<body>
+    <!-- Header strat -->
+    <header class="header">
+        <div class="top-header">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <span>Phone: +84 326640005</span>
+                <span>email: nguyenkhangg2k@gmail.com</span>
+              </div>
+              <div class="col text-right">
+                <span>gift card</span>
+                <span>track order</span>
+                <div class="lang d-inline-flex">
+                  <span>language </span>
+                  <ul class="lang-dropdown">
+                    <li>Freance</li>
+                    <li>Spanis</li>
+                  </ul>
+                </div>
+              </div>
+            </div>          
+          </div>
+        </div>
+        <div class="container">
+          <nav class="navbar">
+            <!-- Site logo -->
+            <a href="/web/index.html" class="logo">
+              <img src="/images/logo.png" alt="">
+            </a>
+            <a href="javascript:void(0);" id="mobile-menu-toggler">
+              <i class="ti-align-justify"></i>
+            </a>
+            <ul class="navbar-nav">    
+              <li><a href="/web/index.html">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="/web/product/index.html">Product</a></li>
+              <li><a href="/web/blog/index.html">Blog</a></li>
+              <li><a href="/web/contact/index.html">Contact</a></li>
+            </ul>
+  
+            <div class="d-inline-flex align-items-center">
+              <a href="#" class="search-icon icon">
+                <!-- <img src="images/icons/search.png" alt=""> -->
+                <i class="ti-search"></i>
+              </a>
+              <a href="#" class="cart-bag icon">
+                <!-- <img src="images/icons/bag.png" alt=""> -->
+                <i class="ti-shopping-cart" onclick="openCart()"></i>
+                <span class="itemCount" id="Th_Giohang">0</span>
+              </a>
+              <a href="#" class="wishlist icon">
+                <i class="ti-user"></i>
+              </a>
+            </div>
+          </nav>
+        </div>
+    </header>
+    <!-- Header end -->
+    
+    <!-- Banner section start -->
+    <section class="banner" style="background-image: url(/images/bg-1.jpg)">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-md-6 order-1 order-md-0">
+            <div class="banner-content">
+              <span class="tagline">Ultimate Collection</span>
+              <h1>Complete Tivi New Here</h1>
+              <a href="#" class="btn-default">Shop Now</a>
+            </div>
+          </div>
+          <div class="col-md-6 order-0 order-md-1">
+            <div class="ban-img">
+              <img src="/images/ban-1.png" alt="">
+            </div>
+          </div>
+        </div>        
+      </div>
+    </section>
+    <!-- Banner section end -->
+
+    <!-- Cart -->
+    <div class="px-4 my-5">
+        <h4>Giỏ hàng của bạn</h4>
+        <button class="btn-default btn-sm" onclick="window.history.back()">Continue Buy</button>
+        <button class="btn-default btn-sm" id="Th_XoaCarts"
+            onclick="sessionStorage.removeItem('carts');window.location='../'">Delete Cart</button>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-7 col-xl-7">
+                <div class="table-responsive">
+                    <table>
+                        <tr style="white-space: nowrap;text-align: center; background-color: #fef7f6;">
+                            <td>Hình </td>
+                            <td>Tên </td>
+                            <td>Số lượng</td>
+                            <td>Đơn giá Bán</td>
+                            <td>Thành tiền</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tbody id="Th_Carts"></tbody>
+                    </table>
+                </div>
+                <div style="text-align: right;">
+                  <button class="btn-default btn-sm" onclick="datHang()">Order</button>
+                </div>
+            </div>
+            <div class="col-12 col-md-5 col-xl-5 my-2">
+                <div class="table-responsive">
+                    <table>
+                        <h3 style="text-align: center;">THÔNG TIN GIAO HÀNG</h3>
+                        <tr style="white-space: nowrap">
+                            <td><label for="Th_Ho_ten">Họ tên: </label></td>
+                            <td><input type="text" id="Th_Ho_ten"></td>
+                        </tr>
+                        <tr style="white-space: nowrap">
+                            <td><label for="Th_Email">Email: </label></td>
+                            <td><input type="text" id="Th_Email"></td>
+                        </tr>
+                        <tr style="white-space: nowrap">
+                            <td><label for="Th_Dien_thoai">Điện thoại: </label></td>
+                            <td><input type="text" id="Th_Dien_thoai"></td>
+                        </tr>
+                        <tr style="white-space: nowrap">
+                            <td><label for="Th_Dia_chi">Địa chỉ Giao hàng:</label></td>
+                            <td><input type="text" id="Th_Dia_chi"></td>
+                        </tr>
+                        <tr style="white-space: nowrap">
+                            <td><label for="Th_Ngay_Giao_hang">Ngày Giao hàng:</label></td>
+                            <td><input type="date" id="Th_Ngay_Giao_hang"></td>
+                        </tr>
+                    </table>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    <!-- Footer strat -->
+    <footer class="footer">
+        <div class="container foo-top">
+          <div class="row">
+            <div class="col-md-2 col-sm-6">
+              <div class="widget widget-navigation">
+                <h4 class="widget-title">About us</h4>
+                <ul>
+                  <li><a href="#">Introduce</a></li>
+                  <li><a href="#">Recruitment</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-2 offset-md-1 col-sm-6">
+              <div class="widget widget-navigation">
+                <h4 class="widget-title">Policy</h4>
+                <ul>
+                  <li><a href="#">Warranty Policy</a></li>
+                  <li><a href="#">Payment Policy</a></li>
+                  <li><a href="#">Delivery policy</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-2 offset-md-1 col-sm-6">
+              <div class="widget widget-navigation">
+                <h4 class="widget-title">Information</h4>
+                <ul>
+                  <li><a href="#">Shop System</a></li>
+                  <li><a href="#">Service Center</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-3 offset-md-1 col-sm-6">
+              <div class="widget widget-social">
+                <h4 class="widget-title">Online shopping</h4>
+                <div class="social-media">
+                  <a href="#"><i class="ti-facebook"></i></a><a href="#"><i class="ti-twitter-alt"></i></a><a href="#"><i class="ti-pinterest"></i></a><a href="#"><i class="ti-instagram"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="container">
+          <p class="copyright">Copyright © 2023. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- Footer end -->
+    
+      <!-- JS -->
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/scripts.js"></script>
+    <script src="/js/product-tivi.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/carts.js"></script>
+    <script>
+        if (sessionStorage.getItem("carts") != undefined) {
+            carts = JSON.parse(sessionStorage.getItem("carts"))
+            document.getElementById("Th_Giohang").innerHTML = carts.length
+        }
+        apiCuahang().then(result => {
+            carts = JSON.parse(sessionStorage.getItem("carts"))
+            Xuat_San_Pham_Mua(carts, Th_Carts)
+        }).catch(err => {
+            console.log(err);
+        })
+
+    </script>
+</body>
+
+</html>
